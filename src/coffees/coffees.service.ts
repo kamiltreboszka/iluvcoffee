@@ -7,8 +7,11 @@ import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 import { Event } from '../events/entities/event.entity';
 import { COFFEE_BRANDS } from './coffees.constans';
+import { ConfigService, ConfigType } from '@nestjs/config';
+import coffeesConfig from 'src/config/coffees.config';
 
-@Injectable({ scope: Scope.REQUEST })
+// @Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class CoffeesService {
   constructor(
     @InjectRepository(Coffee)
@@ -17,7 +20,11 @@ export class CoffeesService {
     private readonly flavorRepository: Repository<Flavor>,
     private readonly dataSource: DataSource,
     @Inject(COFFEE_BRANDS) coffeeBrands: string[],
+    @Inject(coffeesConfig.KEY)
+    private coffeesConfiguration: ConfigType<typeof coffeesConfig>,
   ) {
+    // const coffesConfig = this.configService.get('coffees.foo');
+    console.log(coffeesConfiguration.foo);
     console.log('CoffeesService instantiated');
   }
 
