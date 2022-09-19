@@ -1,7 +1,7 @@
 import { Injectable, Module, Scope } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import coffeesConfig from 'src/config/coffees.config';
+import coffeesConfig from '../config/coffees.config';
 import { Connection } from 'typeorm';
 import { Event } from '../events/entities/event.entity';
 import { COFFEE_BRANDS } from './coffees.constans';
